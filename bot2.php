@@ -34,6 +34,116 @@ if (count($pesan_datang) > 2) {
     }
 }
 #-------------------------[Function]-------------------------#
+function waktu($keyword) {
+    $uri = "https://farzain.xyz/api/jam.php?apikey=9YzAAXsDGYHWFRf6gWzdG5EQECW7oo&id=" . $keyword;
+    $response = Unirest\Request::get("$uri");
+    $json = json_decode($response->raw_body, true);
+    $result = "「Time Result」\n";
+    $result .= "\nNama kota: ";
+	  $result .= $json['location']['address'];
+	  $result .= "\nZona waktu: ";
+	  $result .= $json['time']['timezone'];
+	  $result .= "\nWaktu: \n";
+	  $result .= $json['time']['time'];
+    $result .= "\n";
+    $result .= $json['time']['date'];
+    return $result;
+}
+function cuaca($keyword) {
+    $uri = "http://api.openweathermap.org/data/2.5/weather?q=" . $keyword . ",ID&units=metric&appid=e172c2f3a3c620591582ab5242e0e6c4";
+    $response = Unirest\Request::get("$uri");
+    $json = json_decode($response->raw_body, true);
+    $result = "「Weather Result」";
+    $result .= "\n\nNama kota:";
+	  $result .= $json['name'];
+	  $result .= "\n\nCuaca : ";
+	  $result .= $json['weather']['0']['main'];
+	  $result .= "\nDeskripsi : ";
+	  $result .= $json['weather']['0']['description'];
+    return $result;
+}
+function shalat($keyword) {
+    $uri = "https://time.siswadi.com/pray/" . $keyword;
+    $response = Unirest\Request::get("$uri");
+    $json = json_decode($response->raw_body, true);
+    $result = "「Praytime Schedule」\n\n";
+	  $result .= $json['location']['address'];
+	  $result .= "\nTanggal : ";
+	  $result .= $json['time']['date'];
+	  $result .= "\n\nShubuh : ";
+	  $result .= $json['data']['Fajr'];
+	  $result .= "\nDzuhur : ";
+	  $result .= $json['data']['Dhuhr'];
+	  $result .= "\nAshar : ";
+	  $result .= $json['data']['Asr'];
+	  $result .= "\nMaghrib : ";
+	  $result .= $json['data']['Maghrib'];
+	  $result .= "\nIsya : ";
+	  $result .= $json['data']['Isha'];
+    return $result;
+}
+function jadwaltv($keyword) {
+    $uri = "https://farzain.xyz/api/premium/acaratv.php?apikey=ag73837ung43838383jdhdhd&id=" . $keyword;
+    $response = Unirest\Request::get("$uri");
+    $json = json_decode($response->raw_body, true);
+    $result = "「TV Schedule」";
+	  $result .= $json['url'];
+    return $result;
+}
+function fansign($keyword) {
+    $uri = "https://farzain.xyz/api/premium/fs.php?apikey=ag73837ung43838383jdhdhd&id=" . $keyword;
+    $response = Unirest\Request::get("$uri");
+    $json = json_decode($response->raw_body, true);
+	  $result .= $json['url'];
+    return $result;
+}
+function musiknya($keyword) {
+    $uri = "https://farzain.xyz/api/premium/joox.php?apikey=ag73837ung43838383jdhdhd&id=" . $keyword;
+    $response = Unirest\Request::get("$uri");
+    $json = json_decode($response->raw_body, true);
+    $result = "「Music Result」\n";
+    $result .= "\n\nPenyanyinya: ";
+	  $result .= $json['info']['penyanyi'];
+    $result .= "\n\nJudulnya: ";
+    $result .= $json['info']['judul'];
+    $result .= "\n\nAlbum: ";
+    $result .= $json['info']['album'];
+    $result .= "\nMp3: \n";
+    $result .= $json['audio']['mp3'];
+    $result .= "\n\nM4a: \n";
+    $result .= $json['audio']['m4a'];
+    $result .= "\n\nIcon: \n";
+    $result .= $json['gambar'];
+    $result .= "\n\nLirik: \n";
+    $result .= $json['lirik'];
+    return $result;
+}
+function gambarnya($keyword) {
+    $uri = "https://farzain.xyz/api/gambarg.php?apikey=9YzAAXsDGYHWFRf6gWzdG5EQECW7oo&id=" . $keyword;
+    $response = Unirest\Request::get("$uri");
+    $json = json_decode($response->raw_body, true);
+    $result .= $json['url'];
+    return $result;
+}
+function instainfo($keyword) {
+    $uri = "https://farzain.xyz/api/ig_profile.php?apikey=9YzAAXsDGYHWFRf6gWzdG5EQECW7oo&id=" . $keyword;
+    $response = Unirest\Request::get("$uri");
+    $json = json_decode($response->raw_body, true);
+    $result = "「Instagram Result」\n\n";
+    $result .= "\nUsername: ";
+    $result .= $json['info']['username'];
+    $result .= "\nBio: \n";
+    $result .= $json['info']['bio'];
+    $result .= "\n\nFollowers: ";
+    $result .= $json['count']['followers'];
+    $result .= "\nFollowing: ";
+    $result .= $json['count']['following'];
+    $result .= "\nTotal post: ";
+    $result .= $json['count']['post'];
+    $result .= "\nPicture URL\n";
+    $result .= $json['info']['profile_pict'];
+    return $result;
+}
 function quotes($keyword) {
     $uri = "http://quotes.rest/qod.json?category=" . $keyword;
 
@@ -246,39 +356,7 @@ function say($keyword) {
     return $result; 
 }
 #-------------------------[Function]-------------------------#
-function lirik($keyword) { 
-    $uri = "http://ide.fdlrcn.com/workspace/yumi-apis/joox?songname=" . $keyword . ""; 
- 
-    $response = Unirest\Request::get("$uri"); 
- 
-    $json = json_decode($response->raw_body, true); 
-    $result = "====[Lyrics]====";
-    $result .= "\nJudul : ";
-    $result .= $json['0']['0'];
-    $result .= "\nLyrics :\n";
-    $result .= $json['0']['5'];
-    $result .= "\n\nPencarian : Google";
-    $result .= "\n====[Lyrics]====";
-    return $result; 
-}
-#-------------------------[Function]-------------------------#
-function music($keyword) { 
-    $uri = "http://ide.fdlrcn.com/workspace/yumi-apis/joox?songname=" . $keyword . ""; 
- 
-    $response = Unirest\Request::get("$uri"); 
- 
-    $json = json_decode($response->raw_body, true); 
-    $result = "====[Music]====";
-    $result .= "\nJudul : ";
-    $result .= $json['0']['0'];
-    $result .= "\nDurasi : ";
-    $result .= $json['0']['1'];
-    $result .= "\nLink : ";
-    $result .= $json['0']['4'];
-    $result .= "\n\nPencarian : Google";
-    $result .= "\n====[Music]====";
-    return $result; 
-}
+
 #-------------------------[Function]-------------------------#
 function githubrepo($keyword) { 
     $uri = "https://api.github.com/search/repositories?q=" . $keyword; 
@@ -348,68 +426,12 @@ function img_search($keyword) {
     return explode('"', $arrays[291])[3];
 }
 #-------------------------[Function]-------------------------#
-function shalat($keyword) {
-    $uri = "https://time.siswadi.com/pray/" . $keyword;
 
-    $response = Unirest\Request::get("$uri");
-
-    $json = json_decode($response->raw_body, true);
-    $result = "====[JadwalShalat]====";
-    $result .= "\nLokasi : ";
-	$result .= $json['location']['address'];
-	$result .= "\nTanggal : ";
-	$result .= $json['time']['date'];
-	$result .= "\n\nShubuh : ";
-	$result .= $json['data']['Fajr'];
-	$result .= "\nDzuhur : ";
-	$result .= $json['data']['Dhuhr'];
-	$result .= "\nAshar : ";
-	$result .= $json['data']['Asr'];
-	$result .= "\nMaghrib : ";
-	$result .= $json['data']['Maghrib'];
-	$result .= "\nIsya : ";
-	$result .= $json['data']['Isha'];
-	$result .= "\n\nPencarian : Google";
-	$result .= "\n====[JadwalShalat]====";
-    return $result;
-}
 #-------------------------[Function]-------------------------#
 #-------------------------[Function]-------------------------#
-function kalender($keyword) {
-    $uri = "https://time.siswadi.com/pray/" . $keyword;
 
-    $response = Unirest\Request::get("$uri");
-
-    $json = json_decode($response->raw_body, true);
-    $result = "====[Kalender]====";
-    $result .= "\nLokasi : ";
-	$result .= $json['location']['address'];
-	$result .= "\nTanggal : ";
-	$result .= $json['time']['date'];
-	$result .= "\n\nPencarian : Google";
-	$result .= "\n====[Kalender]====";
-    return $result;
-}
 #-------------------------[Function]-------------------------#
-function waktu($keyword) {
-    $uri = "https://time.siswadi.com/pray/" . $keyword;
 
-    $response = Unirest\Request::get("$uri");
-
-    $json = json_decode($response->raw_body, true);
-    $result = "====[Time]====";
-    $result .= "\nLokasi : ";
-	$result .= $json['location']['address'];
-	$result .= "\nJam : ";
-	$result .= $json['time']['time'];
-	$result .= "\nSunrise : ";
-	$result .= $json['debug']['sunrise'];
-	$result .= "\nSunset : ";
-	$result .= $json['debug']['sunset'];
-	$result .= "\n\nPencarian : Google";
-	$result .= "\n====[Time]====";
-    return $result;
-}
 #-------------------------[Function]-------------------------#
 function saveitoffline($keyword) {
     $uri = "https://www.saveitoffline.com/process/?url=" . $keyword . '&type=json';
@@ -465,22 +487,7 @@ function lokasi($keyword) {
 }
 
 #-------------------------[Function]-------------------------#
-function cuaca($keyword) {
-    $uri = "http://api.openweathermap.org/data/2.5/weather?q=" . $keyword . ",ID&units=metric&appid=e172c2f3a3c620591582ab5242e0e6c4";
-    $response = Unirest\Request::get("$uri");
 
-    $json = json_decode($response->raw_body, true);
-    $result = "====[InfoCuaca]====";
-    $result .= "\nKota : ";
-	$result .= $json['name'];
-	$result .= "\nCuaca : ";
-	$result .= $json['weather']['0']['main'];
-	$result .= "\nDeskripsi : ";
-	$result .= $json['weather']['0']['description'];
-	$result .= "\n\nPencariaan : Google";
-	$result .= "\n====[InfoCuaca]====";
-    return $result;
-}
 #-------------------------[Function]-------------------------#
 function urb_dict($keyword) {
     $uri = "http://api.urbandictionary.com/v0/define?term=" . $keyword;
@@ -537,6 +544,11 @@ function send($input, $rt){
 function jawabs(){
     $list_jwb = array(
 		'Ya',
+	        'Bisa jadi'
+	        'Mungkin'
+	        'Gak tau'
+	        'Woya donk'
+	        'Jawab gk yah!'
 		'Tidak',
 		'Coba ajukan pertanyaan lain',	    
 		);
@@ -630,31 +642,7 @@ function zodiak($keyword) {
 #-------------------------[Function]-------------------------#
 //show menu, saat join dan command,menu
 if ($type == 'join' || $command == 'Help') {
-    $text = "Makasih dh invite aku ke grup kak!! Ketik Help untuk gunain aku\n";
-    $text .= "Keyword GalaxySMP ~~~\n";
-    $text .= "> /anime-syn [text]\n";
-    $text .= "> /anime [text]\n";
-    $text .= "> /manga-syn [text]\n";
-    $text .= "> /manga [text]\n";
-    $text .= "> /film-syn [text]\n";
-    $text .= "> /film [text]\n";
-    $text .= "> /convert [link]\n";
-    $text .= "> /say [text]\n";
-    $text .= "> /music[text]\n";
-    $text .= "> /lirik [lagu]\n";
-    $text .= "> /shalat [namakota]\n";
-    $text .= "> /zodiak [tanggallahir]\n";
-    $text .= "> /lokasi [namakota]\n";
-    $text .= "> /time [namakota]\n";
-    $text .= "> /kalender [namakota]\n";
-    $text .= "> /cuaca [namakota]\n";
-    $text .= "> /def [text]\n";
-    $text .= "> /qiblat [namakota]\n";
-    $text .= "> /playstore [namaapk]\n";
-    $text .= "> /myinfo\n";
-    $text .= "> /creator\n";
-    $text .= "> /about\n";
-    $text .= "> /bantuan\n";
+    $text = "Makasih dh invite aku ke grup kak!! Ketik /menu untuk melihat fitur aku\n";
     $balas = array(
         'replyToken' => $replyToken,
         'messages' => array(
@@ -723,6 +711,12 @@ if($msg_type == 'text'){
     $pesan_datang = strtolower($message['text']);
     $filter = explode(' ', $pesan_datang);
     if($filter[0] == 'apakah') {
+        $balas = send(jawabs(), $replyToken);
+    } else {}
+if($msg_type == 'text'){
+    $pesan_datang = strtolower($message['text']);
+    $filter = explode(' ', $pesan_datang);
+    if($filter[0] == 'Apakah') {
         $balas = send(jawabs(), $replyToken);
     } else {}
 } if($msg_type == 'text'){
