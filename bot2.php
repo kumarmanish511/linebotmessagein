@@ -642,7 +642,8 @@ function zodiak($keyword) {
 #-------------------------[Function]-------------------------#
 //show menu, saat join dan command,menu
 if ($type == 'join' || $command == 'Help') {
-    $text = "Makasih dh invite aku ke grup kak!! Ketik /menu untuk melihat fitur aku\n";
+    $text = "Makasih dh invite aku ke grup kak!! Ketik /menu untuk melihat fitur aku\n\n";
+    $text .= "Untuk bisa menggunakan smua fitur yang aq miliki kaka harus add aku dulu ya :)!";
     $balas = array(
         'replyToken' => $replyToken,
         'messages' => array(
