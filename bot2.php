@@ -1312,7 +1312,7 @@ if($message['type']=='text') {
                 )
             )
         );
-}
+
     } else if ($command == '/bantuan') {
                     $balas = array(
         'replyToken' => $replyToken,
@@ -1533,6 +1533,8 @@ if($message['type']=='text') {
 
 )
 );
+}
+
 }
 if (isset($balas)) {
     $result = json_encode($balas);
