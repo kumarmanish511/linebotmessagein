@@ -354,22 +354,28 @@ function kalender($keyword) {
     return $result;
 }
 #-------------------------[Function]-------------------------#
+function instainfo2($keyword) {
+    $uri = "https://farzain.xyz/api/ig_profile.php?apikey=9YzAAXsDGYHWFRf6gWzdG5EQECW7oo&id=" . $keyword;
+    $response = Unirest\Request::get("$uri");
+    $json = json_decode($response->raw_body, true);
+    $result = $json['info']['profile_pict'];
+    return $result;
+}
 function instainfo($keyword) {
     $uri = "https://farzain.xyz/api/ig_profile.php?apikey=9YzAAXsDGYHWFRf6gWzdG5EQECW7oo&id=" . $keyword;
     $response = Unirest\Request::get("$uri");
     $json = json_decode($response->raw_body, true);
-    $result['gambar'] .= $json['info']['profile_pict'];
-    $result['textnya'] .= "「Instagram Result」\n\n";
-    $result['textnya'] .= "\nUsername: ";
-    $result['textnya'] .= $json['info']['username'];
-    $result['textnya'] .= "\nBio: \n";
-    $result['textnya'] .= $json['info']['bio'];
-    $result['textnya'] .= "\n\nFollowers: ";
-    $result['textnya'] .= $json['count']['followers'];
-    $result['textnya'] .= "\nFollowing: ";
-    $result['textnya'] .= $json['count']['following'];
-    $result['textnya'] .= "\nTotal post: ";
-    $result['textnya'] .= $json['count']['post'];
+    $result = "「Instagram Result」\n\n";
+    $result .= "\nUsername: ";
+    $result .= $json['info']['username'];
+    $result .= "\nBio: \n";
+    $result .= $json['info']['bio'];
+    $result .= "\n\nFollowers: ";
+    $result .= $json['count']['followers'];
+    $result .= "\nFollowing: ";
+    $result .= $json['count']['following'];
+    $result .= "\nTotal post: ";
+    $result .= $json['count']['post'];
     return $result;
 }
 function waktu($keyword) {
@@ -775,17 +781,18 @@ if($message['type']=='text') {
 if($message['type']=='text') {
 	    if ($command == '/instagram') {
         $result = instainfo($options);
+	$resultt = instainfo2($options);
         $balas = array(
             'replyToken' => $replyToken,
             'messages' => array(
 		array(
                     'type' => 'image',
-                    'originalContentUrl' => $result['gambar'],
-                    'previewImageUrl' => $result['gambar']
+                    'originalContentUrl' => $resultt,
+                    'previewImageUrl' => $resultt
                 ),
                 array(
                     'type' => 'text',
-                    'text' => $result['textnya']
+                    'text' => $result
                 )
             )
         );
