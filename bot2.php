@@ -105,7 +105,9 @@ function anime($keyword) {
     $parsed['synopsis'] = str_replace("<br />", "\n", html_entity_decode((string) $xml->entry[0]->synopsis, ENT_QUOTES | ENT_XHTML, 'UTF-8'));
     return $parsed;
 }
-#-------------------------[Function]-------------------------#
+
+
+
 function manga($keyword) {
     $fullurl = 'https://myanimelist.net/api/manga/search.xml?q=' . $keyword;
     $username = 'jamal3213';
@@ -131,23 +133,29 @@ function manga($keyword) {
     $parsed['synopsis'] = str_replace("<br />", "\n", html_entity_decode((string) $xml->entry[0]->synopsis, ENT_QUOTES | ENT_XHTML, 'UTF-8'));
     return $parsed;
 }
-#-------------------------[Function]-------------------------#
 
-#-------------------------[Function]-------------------------#
+
+
 function anime_syn($title) {
     $parsed = anime($title);
     $result = "Judul : " . $parsed['title'];
     $result .= "\n\nSynopsis :\n" . $parsed['synopsis'];
     return $result;
 }
-#-------------------------[Function]-------------------------#
+
+
+
 function manga_syn($title) {
     $parsed = manga($title);
     $result = "Judul : " . $parsed['title'];
     $result .= "\n\nSynopsis :\n" . $parsed['synopsis'];
     return $result;
 }
-#-------------------------[Function]-------------------------#
+
+
+
+
+
 function jadwaltv($keyword) {
     $uri = "https://farzain.xyz/api/premium/acaratv.php?apikey=ag73837ung43838383jdhdhd&id=" . $keyword;
     $response = Unirest\Request::get("$uri");
@@ -156,7 +164,10 @@ function jadwaltv($keyword) {
 	  $result .= $json['url'];
     return $result;
 }
-#-------------------------[Function]-------------------------#
+
+
+
+
 function shalat($keyword) {
     $uri = "https://time.siswadi.com/pray/" . $keyword;
     $response = Unirest\Request::get("$uri");
@@ -177,13 +188,17 @@ function shalat($keyword) {
 	  $result .= $json['data']['Isha'];
     return $result;
 }
-#-------------------------[Function]-------------------------#
+
+
+
+
 function cuaca($keyword) {
     $uri = "http://api.openweathermap.org/data/2.5/weather?q=" . $keyword . ",ID&units=metric&appid=e172c2f3a3c620591582ab5242e0e6c4";
     $response = Unirest\Request::get("$uri");
     $json = json_decode($response->raw_body, true);
+	
     $result = "「Weather Result」";
-    $result .= "\n\nNama kota:";
+          $result .= "\n\nNama kota:";
 	  $result .= $json['name'];
 	  $result .= "\n\nCuaca : ";
 	  $result .= $json['weather']['0']['main'];
@@ -191,42 +206,47 @@ function cuaca($keyword) {
 	  $result .= $json['weather']['0']['description'];
     return $result;
 }
-#-------------------------[Function]-------------------------#
 
-#-------------------------[Function]-------------------------#
+
+
 function gambarnya($keyword) {
     $uri = "https://farzain.xyz/api/gambarg.php?apikey=9YzAAXsDGYHWFRf6gWzdG5EQECW7oo&id=" . $keyword;
+	
     $response = Unirest\Request::get("$uri");
+	
     $json = json_decode($response->raw_body, true);
-    $result = $json['url'];
+	
+    $result .= $json['url'];
     return $result;
 }
-#-------------------------[Function]-------------------------#
+
+
+
 function waktu($keyword) {
     $uri = "https://farzain.xyz/api/jam.php?apikey=9YzAAXsDGYHWFRf6gWzdG5EQECW7oo&id=" . $keyword;
     $response = Unirest\Request::get("$uri");
     $json = json_decode($response->raw_body, true);
     $result = "「Time Result」\n";
-    $result .= "\nNama kota: ";
-    $result .= $json['location']['address'];
-    $result .= "\nZona waktu: ";
-    $result .= $json['time']['timezone'];
-    $result .= "\nWaktu: \n";
-    $result .= $json['time']['time'];
-    $result .= "\n";
-    $result .= $json['time']['date'];
+        $result .= "\nNama kota: ";
+        $result .= $json['location']['address'];
+        $result .= "\nZona waktu: ";
+        $result .= $json['time']['timezone'];
+        $result .= "\nWaktu: \n";
+        $result .= $json['time']['time'];
+        $result .= "\n";
+        $result .= $json['time']['date'];
     return $result;
 }
 #-------------------------[Function]-------------------------#
 
-#-------------------------[Function]-------------------------#
-
-#-------------------------[Function]-------------------------#
 
 function instainfo($keyword) {
     $uri = "https://farzain.xyz/api/ig_profile.php?apikey=9YzAAXsDGYHWFRf6gWzdG5EQECW7oo&id=" . $keyword;
+	
     $response = Unirest\Request::get("$uri");
+	
     $json = json_decode($response->raw_body, true);
+	
     $result = "「Instagram Result」\n\n";
     $result .= "\nUsername: ";
     $result .= $json['info']['username'];
@@ -304,7 +324,7 @@ function qibla($keyword) {
  $result .= $json['data']['image'];
     return $result; 
 }
-// ----- LOCATION BY FIDHO -----
+// ----- LOCATION BY FIDHO -----//
 function lokasi($keyword) { 
     $uri = "https://time.siswadi.com/pray/" . $keyword; 
  
