@@ -358,7 +358,7 @@ function instainfo($keyword) {
     $uri = "https://farzain.xyz/api/ig_profile.php?apikey=9YzAAXsDGYHWFRf6gWzdG5EQECW7oo&id=" . $keyword;
     $response = Unirest\Request::get("$uri");
     $json = json_decode($response->raw_body, true);
-    $result['gambar'] = (string) $json['info']['profile_pict'];
+    $result['gambar'] = $json['info']['profile_pict'];
     $result['textnya'] = "「Instagram Result」\n\n";
     $result['textnya'] .= "\nUsername: ";
     $result['textnya'] .= $json['info']['username'];
