@@ -198,7 +198,7 @@ function gambarnya($keyword) {
     $uri = "https://farzain.xyz/api/gambarg.php?apikey=9YzAAXsDGYHWFRf6gWzdG5EQECW7oo&id=" . $keyword;
     $response = Unirest\Request::get("$uri");
     $json = json_decode($response->raw_body, true);
-    $result .= $json['url'];
+    $result = $json['url'];
     return $result;
 }
 #-------------------------[Function]-------------------------#
@@ -208,11 +208,11 @@ function waktu($keyword) {
     $json = json_decode($response->raw_body, true);
     $result = "「Time Result」\n";
     $result .= "\nNama kota: ";
-	  $result .= $json['location']['address'];
-	  $result .= "\nZona waktu: ";
-	  $result .= $json['time']['timezone'];
-	  $result .= "\nWaktu: \n";
-	  $result .= $json['time']['time'];
+    $result .= $json['location']['address'];
+    $result .= "\nZona waktu: ";
+    $result .= $json['time']['timezone'];
+    $result .= "\nWaktu: \n";
+    $result .= $json['time']['time'];
     $result .= "\n";
     $result .= $json['time']['date'];
     return $result;
@@ -250,7 +250,7 @@ function musiknya($keyword) {
     $json = json_decode($response->raw_body, true);
     $result = "「Music Result」\n";
     $result .= "\n\nPenyanyinya: ";
-	  $result .= $json['info']['penyanyi'];
+    $result .= $json['info']['penyanyi'];
     $result .= "\n\nJudulnya: ";
     $result .= $json['info']['judul'];
     $result .= "\n\nAlbum: ";
@@ -543,6 +543,20 @@ if($msg_type == 'text'){
 if($message['type']=='text') {
 	    if ($command == '/say') {
         $result = say($options);
+        $balas = array(
+            'replyToken' => $replyToken,
+            'messages' => array(
+                array(
+                    'type' => 'text',
+                    'text' => $result
+                )
+            )
+        );
+    }
+}
+if($message['type']=='text') {
+	    if ($command == '/musik') {
+        $result = musiknya($options);
         $balas = array(
             'replyToken' => $replyToken,
             'messages' => array(
