@@ -370,8 +370,6 @@ function instainfo($keyword) {
     $result['textnya'] .= $json['count']['following'];
     $result['textnya'] .= "\nTotal post: ";
     $result['textnya'] .= $json['count']['post'];
-    $result['textnya'] .= "\nURL:\n";
-    $result['textnya'] .= "https://www.instagram.com/" . $keyword;
     return $result;
 }
 function waktu($keyword) {
