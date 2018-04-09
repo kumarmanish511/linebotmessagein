@@ -1089,7 +1089,19 @@ if($message['type']=='text') {
         );
     }
 }
-
+if($message['type']=='text') {
+	    if ('Apakah' == $command) {
+        $balas = array(
+            'replyToken' => $replyToken,
+            'messages' => array(
+                array(
+                    'type' => 'text',
+                    'text' => $acak
+                )
+            )
+        );
+    }
+}
 //pesan bergambar
 if($message['type']=='text') {
 	    if ($command == '/time') {
