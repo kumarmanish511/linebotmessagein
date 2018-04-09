@@ -780,7 +780,7 @@ if($message['type']=='text') {
             'messages' => array(
 		array(
                     'type' => 'image',
-                    'originalContentUrl' => $result['gambar']
+                    'originalContentUrl' => $result['gambar'],
                     'previewImageUrl' => $result['gambar']
                 ),
                 array(
