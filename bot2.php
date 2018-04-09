@@ -369,8 +369,9 @@ function instainfo($keyword) {
     $result .= $json['count']['following'];
     $result .= "\nTotal post: ";
     $result .= $json['count']['post'];
-    $result .= "\nPicture URL\n";
-    $result .= $json['info']['profile_pict'];
+    $result .= "\nURL:\n";
+    $result .= "https://www.instagram.com/" . $keyword;
+    $result['gambar'] .= $json['info']['profile_pict'];
     return $result;
 }
 function waktu($keyword) {
@@ -779,6 +780,11 @@ if($message['type']=='text') {
         $balas = array(
             'replyToken' => $replyToken,
             'messages' => array(
+		array(
+                    'type' => 'image',
+                    'originalContentUrl' => $result['gambar']
+                    'previewImageUrl' => $result['gambar']
+                ),
                 array(
                     'type' => 'text',
                     'text' => $result
