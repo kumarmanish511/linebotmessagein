@@ -358,6 +358,7 @@ function instainfo($keyword) {
     $uri = "https://farzain.xyz/api/ig_profile.php?apikey=9YzAAXsDGYHWFRf6gWzdG5EQECW7oo&id=" . $keyword;
     $response = Unirest\Request::get("$uri");
     $json = json_decode($response->raw_body, true);
+    $result['gambar'] = $json['info']['profile_pict'];
     $result = "「Instagram Result」\n\n";
     $result .= "\nUsername: ";
     $result .= $json['info']['username'];
@@ -371,7 +372,6 @@ function instainfo($keyword) {
     $result .= $json['count']['post'];
     $result .= "\nURL:\n";
     $result .= "https://www.instagram.com/" . $keyword;
-    $result['gambar'] = $json['info']['profile_pict'];
     return $result;
 }
 function waktu($keyword) {
