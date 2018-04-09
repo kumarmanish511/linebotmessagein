@@ -371,7 +371,7 @@ function instainfo($keyword) {
     $result .= $json['count']['post'];
     $result .= "\nURL:\n";
     $result .= "https://www.instagram.com/" . $keyword;
-    $result['gambar'] .= $json['info']['profile_pict'];
+    $result['gambar'] = $json['info']['profile_pict'];
     return $result;
 }
 function waktu($keyword) {
