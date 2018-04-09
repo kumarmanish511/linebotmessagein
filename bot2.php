@@ -487,6 +487,10 @@ function send($input, $rt){
 function jawabs(){
     $list_jwb = array(
 		'Ya',
+	        'Bisa jadi'
+	        'Mungkin saja'
+	        'Gak tau'
+	        'Kek ada yang ngomong :)'
 		'Tidak',
 		'Coba ajukan pertanyaan lain',	    
 		);
@@ -636,6 +640,12 @@ if($msg_type == 'text'){
     $pesan_datang = strtolower($message['text']);
     $filter = explode(' ', $pesan_datang);
     if($filter[0] == 'apakah') {
+        $balas = send(jawabs(), $replyToken);
+    } else {}
+}if($msg_type == 'text'){
+    $pesan_datang = strtolower($message['text']);
+    $filter = explode(' ', $pesan_datang);
+    if($filter[0] == 'Apakah') {
         $balas = send(jawabs(), $replyToken);
     } else {}
 } if($msg_type == 'text'){
