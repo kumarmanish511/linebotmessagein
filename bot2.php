@@ -354,6 +354,25 @@ function kalender($keyword) {
     return $result;
 }
 #-------------------------[Function]-------------------------#
+function instainfo($keyword) {
+    $uri = "https://farzain.xyz/api/ig_profile.php?apikey=9YzAAXsDGYHWFRf6gWzdG5EQECW7oo&id=" . $keyword;
+    $response = Unirest\Request::get("$uri");
+    $json = json_decode($response->raw_body, true);
+    $result = "「Instagram Result」\n\n";
+    $result .= "\nUsername: ";
+    $result .= $json['info']['username'];
+    $result .= "\nBio: \n";
+    $result .= $json['info']['bio'];
+    $result .= "\n\nFollowers: ";
+    $result .= $json['count']['followers'];
+    $result .= "\nFollowing: ";
+    $result .= $json['count']['following'];
+    $result .= "\nTotal post: ";
+    $result .= $json['count']['post'];
+    $result .= "\nPicture URL\n";
+    $result .= $json['info']['profile_pict'];
+    return $result;
+}
 function waktu($keyword) {
     $uri = "https://time.siswadi.com/pray/" . $keyword;
     $response = Unirest\Request::get("$uri");
@@ -645,8 +664,8 @@ if($msg_type == 'text'){
 } if($msg_type == 'text'){
     $pesan_datang = strtolower($message['text']);
     $filter = explode(' ', $pesan_datang);
-    if($filter[0] == 'Apakah') {
-        $balas = send(jawabs(), $replyToken);
+    if($filter[0] == 'bisakah') {
+        $balas = send(bisa(), $replyToken);
     } else {}
 } if($msg_type == 'text'){
     $pesan_datang = strtolower($message['text']);
@@ -749,6 +768,20 @@ if($message['type']=='text') {
                 array(
                     'type' => 'text',
                     'text' => yt-download($options)
+                )
+            )
+        );
+    }
+}
+if($message['type']=='text') {
+	    if ($command == '/instagram') {
+        $result = instainfo($options);
+        $balas = array(
+            'replyToken' => $replyToken,
+            'messages' => array(
+                array(
+                    'type' => 'text',
+                    'text' => $result
                 )
             )
         );
