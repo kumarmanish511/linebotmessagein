@@ -359,19 +359,19 @@ function instainfo($keyword) {
     $response = Unirest\Request::get("$uri");
     $json = json_decode($response->raw_body, true);
     $result['gambar'] = $json['info']['profile_pict'];
-    $result = "「Instagram Result」\n\n";
-    $result .= "\nUsername: ";
-    $result .= $json['info']['username'];
-    $result .= "\nBio: \n";
-    $result .= $json['info']['bio'];
-    $result .= "\n\nFollowers: ";
-    $result .= $json['count']['followers'];
-    $result .= "\nFollowing: ";
-    $result .= $json['count']['following'];
-    $result .= "\nTotal post: ";
-    $result .= $json['count']['post'];
-    $result .= "\nURL:\n";
-    $result .= "https://www.instagram.com/" . $keyword;
+    $result['textnya'] = "「Instagram Result」\n\n";
+    $result['textnya'] .= "\nUsername: ";
+    $result['textnya'] .= $json['info']['username'];
+    $result['textnya'] .= "\nBio: \n";
+    $result['textnya'] .= $json['info']['bio'];
+    $result['textnya'] .= "\n\nFollowers: ";
+    $result['textnya'] .= $json['count']['followers'];
+    $result['textnya'] .= "\nFollowing: ";
+    $result['textnya'] .= $json['count']['following'];
+    $result['textnya'] .= "\nTotal post: ";
+    $result['textnya'] .= $json['count']['post'];
+    $result['textnya'] .= "\nURL:\n";
+    $result['textnya'] .= "https://www.instagram.com/" . $keyword;
     return $result;
 }
 function waktu($keyword) {
@@ -787,7 +787,7 @@ if($message['type']=='text') {
                 ),
                 array(
                     'type' => 'text',
-                    'text' => $result
+                    'text' => $result['textnya']
                 )
             )
         );
