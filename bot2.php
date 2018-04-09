@@ -1090,7 +1090,7 @@ if($message['type']=='text') {
     }
 }
 if($message['type']=='text') {
-	    if ('Apakah' == $command) {
+	    if ('hjsgdshdvbehb' == $command) {
         $balas = array(
             'replyToken' => $replyToken,
             'messages' => array(
