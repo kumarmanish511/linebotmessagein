@@ -572,32 +572,9 @@ function zodiak($keyword) {
 }
 #-------------------------[Function]-------------------------#
 //show menu, saat join dan command,menu
-if ($type == 'join' || $command == 'Help') {
-    $text = "Makasih dh invite aku ke grup kak!! Ketik Help untuk gunain aku\n";
-    $text .= "Keyword GalaxySMP ~~~\n";
-    $text .= "> /anime-syn [text]\n";
-    $text .= "> /anime [text]\n";
-    $text .= "> /manga-syn [text]\n";
-    $text .= "> /manga [text]\n";
-    $text .= "> /film-syn [text]\n";
-    $text .= "> /film [text]\n";
-    $text .= "> /convert [link]\n";
-    $text .= "> /say [text]\n";
-    $text .= "> /music[text]\n";
-    $text .= "> /lirik [lagu]\n";
-    $text .= "> /shalat [namakota]\n";
-    $text .= "> /zodiak [tanggallahir]\n";
-    $text .= "> /lokasi [namakota]\n";
-    $text .= "> /time [namakota]\n";
-    $text .= "> /kalender [namakota]\n";
-    $text .= "> /cuaca [namakota]\n";
-    $text .= "> /def [text]\n";
-    $text .= "> /qiblat [namakota]\n";
-    $text .= "> /playstore [namaapk]\n";
-    $text .= "> /myinfo\n";
-    $text .= "> /creator\n";
-    $text .= "> /about\n";
-    $text .= "> /bantuan\n";
+if ($type == 'join') {
+    $text = "Makasih dh invite aku ke grup kak!! Ketik /menu untuk melihat fitur yang aq punya\n\n";
+    $text .= "untuk menggunakan fitur secara maksimal add aq dulu y kak :)\n";
     $balas = array(
         'replyToken' => $replyToken,
         'messages' => array(
